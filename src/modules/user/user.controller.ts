@@ -15,4 +15,13 @@ export class UserController {
             user: user
         })
     }
+
+    @Post('login-user')
+    async login(@Res() res, @Body() createUserDTO: CreateUserDTO){
+        const userExist = await this.userService.loginUser(createUserDTO)
+        return res.status(HttpStatus.OK).json({
+            message: "User Successfully Logged",
+            userExist: userExist
+        })
+    }
 }
