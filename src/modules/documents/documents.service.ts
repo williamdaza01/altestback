@@ -29,12 +29,17 @@ export class DocumentsService {
     return await document.save();
   }
 
-  async getDocuments(){
+  async getDocuments() {
     try {
       const documents = await this.docModel.find().exec();
       return { success: true, data: documents };
     } catch (error) {
       return { success: false, error: error.message };
     }
+  }
+
+  async deleteDocument(docuemntId: string): Promise<any> {
+    const deletedProduct = await this.docModel.findByIdAndDelete(docuemntId);
+    return deletedProduct;
   }
 }

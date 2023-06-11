@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Res, HttpStatus, Body, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Res, Query, HttpStatus, Body, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { DocumentsService } from './documents.service';
 import { CreateDocumentDTO } from './dto/document.dto';
@@ -29,4 +29,14 @@ export class DocumentsController {
   async getDocuments(){
     return await this.documentService.getDocuments();
   }
+
+  @Delete('delete-document')
+  async deleteDocument(@Res() res, @Query('documentId') documentId){
+    console.log(documentId);
+    
+    const doc = await this.documentService.deleteDocument(documentId);
+    if(!doc) throw new Error("No existe el documento");
+    return res.status(HttpStatus.OK);
+  }
+
 }
