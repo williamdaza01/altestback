@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Delete, Res, Query, HttpStatus, Body, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Res, Query, HttpStatus, Body, UploadedFile, UseInterceptors, Put, Req } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { DocumentsService } from './documents.service';
 import { CreateDocumentDTO } from './dto/document.dto';
@@ -39,4 +39,10 @@ export class DocumentsController {
     return res.status(HttpStatus.OK);
   }
 
+  @Put('update-document-reviewer')
+  async updateDocumentReviewer(@Res() res, @Query('documentId') documentId, @Body() createDocumentDTO){
+     const doc = await this.documentService.updateDocumentReviewer(documentId, createDocumentDTO);
+    if(!doc) throw new Error("No existe el documento");
+    return res.status(HttpStatus.OK);
+  }
 }

@@ -42,4 +42,16 @@ export class DocumentsService {
     const deletedProduct = await this.docModel.findByIdAndDelete(docuemntId);
     return deletedProduct;
   }
+
+  async updateDocumentReviewer(
+    documentId: string,
+    createDocumentDTO: CreateDocumentDTO,
+  ): Promise<DocumentPdf> {
+    const updatedDocument = await this.docModel.findByIdAndUpdate(
+      documentId,
+      createDocumentDTO,
+      { new: true },
+    );
+    return updatedDocument;
+  }
 }

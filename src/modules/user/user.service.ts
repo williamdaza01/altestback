@@ -22,4 +22,9 @@ export class UserService {
     }
     return true;
   }
+
+  async getReviewers(): Promise<User[]> {
+    const reviewers = await this.userModel.find({ isReviewer: true });
+    return reviewers;
+  }
 }

@@ -3,5 +3,6 @@ export class CreateUserDTO {
     lastname?: string;
     email: string;
     password: string;
+    isReviewer?: boolean;
     createdAt?: Date;
 }

@@ -1,4 +1,4 @@
-import { Controller, Post, Res, HttpStatus, Body } from '@nestjs/common';
+import { Controller, Post, Res, HttpStatus, Body, Get } from '@nestjs/common';
 import {CreateUserDTO} from './dto/user.dto'; 
 import { UserService } from './user.service';
 
@@ -23,5 +23,10 @@ export class UserController {
             message: "User Successfully Logged",
             userExist: userExist
         })
+    }
+
+    @Get('load-reviewers')
+    async getReviewer(){
+        return await this.userService.getReviewers();
     }
 }

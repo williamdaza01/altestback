@@ -4,13 +4,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './modules/user/user.module';
 import { DocumentModule } from './modules/documents/document.module';
+import { ReviewsModule } from './modules/reviews/reviews.module';
+import { CommentsModule } from './modules/comments/comments.module';
 
 @Module({
   imports: [
     UserModule, 
     MongooseModule.forRoot('mongodb://localhost:27017/altestdb', {
     useNewUrlParser: true
-  }), DocumentModule],
+  }), DocumentModule, ReviewsModule, CommentsModule],
   controllers: [AppController],
   providers: [AppService],
 })

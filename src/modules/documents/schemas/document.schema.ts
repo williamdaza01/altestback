@@ -1,4 +1,5 @@
 import { Schema, SchemaTypes } from 'mongoose';
+import { StateType } from 'src/utils/types';
 
 export const DocumentSchema = new Schema({
   title: {
@@ -20,7 +21,11 @@ export const DocumentSchema = new Schema({
     },
   },
   state: {
-    type: Boolean,
-    default: false,
+    type: String,
+    default: StateType.NO_CHECKING,
   },
+  reviewer: {
+    type: String,
+    default: "",
+  }
 });

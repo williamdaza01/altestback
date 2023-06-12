@@ -5,5 +5,6 @@ export interface User extends Document {
     lastname?: string;
     email: string;
     password: string;
+    isReviewer?: boolean;
     createdAt?: Date;
 }

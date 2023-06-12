@@ -1,4 +1,5 @@
 import { Document } from 'mongoose';
+import { StateType } from 'src/utils/types';
 
 export interface DocumentPdf extends Document {
   title: string;
@@ -7,5 +8,6 @@ export interface DocumentPdf extends Document {
     contentType: string;
     filename: string;
   };
-  state?: boolean;
+  state?: StateType;
+  reviewer?: string;
 }

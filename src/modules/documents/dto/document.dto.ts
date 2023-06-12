@@ -1,5 +1,8 @@
+import { StateType } from "src/utils/types";
+
 export class CreateDocumentDTO {
     title: string;
     file: Express.Multer.File;
-    state?: boolean;
+    state?: StateType;
+    reviewer?: string;
 }
