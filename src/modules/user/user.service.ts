@@ -14,13 +14,19 @@ export class UserService {
     return await user.save();
   }
 
-  async loginUser(createUserDTO: CreateUserDTO): Promise<boolean> {
+  async loginUser(createUserDTO: CreateUserDTO): Promise<any> {
     const user = await this.userModel.findOne({ email: createUserDTO.email });
 
     if (!user || user.password !== createUserDTO.password) {
       return false;
     }
-    return true;
+    const currentUser = {
+      userExist: true,
+      userId: user._id,
+      userName: `${user.name} ${user.lastname}`,
+      isReviewer: user.isReviewer
+    };
+    return currentUser;
   }
 
   async getReviewers(): Promise<User[]> {

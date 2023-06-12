@@ -31,9 +31,7 @@ export class DocumentsController {
   }
 
   @Delete('delete-document')
-  async deleteDocument(@Res() res, @Query('documentId') documentId){
-    console.log(documentId);
-    
+  async deleteDocument(@Res() res, @Query('documentId') documentId){    
     const doc = await this.documentService.deleteDocument(documentId);
     if(!doc) throw new Error("No existe el documento");
     return res.status(HttpStatus.OK);
@@ -44,5 +42,11 @@ export class DocumentsController {
      const doc = await this.documentService.updateDocumentReviewer(documentId, createDocumentDTO);
     if(!doc) throw new Error("No existe el documento");
     return res.status(HttpStatus.OK);
+  }
+
+  @Get('get-document-by-review')
+  async getDocumentByIdReview(@Query('documentId') documentId){
+    const doc = await this.documentService.getDocumentByIdReview(documentId);
+    return doc.data.file;
   }
 }
