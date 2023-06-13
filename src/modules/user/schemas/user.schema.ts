@@ -5,6 +5,10 @@ export const UserSchema = new Schema({
     lastname: String,
     email: String,
     password: String,
+    isReviewer:{
+      type: Boolean,
+      default: false
+    },
     createdAt: {
         type: Date,
         default: Date.now

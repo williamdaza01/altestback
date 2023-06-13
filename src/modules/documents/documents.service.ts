@@ -39,7 +39,28 @@ export class DocumentsService {
   }
 
   async deleteDocument(docuemntId: string): Promise<any> {
-    const deletedProduct = await this.docModel.findByIdAndDelete(docuemntId);
-    return deletedProduct;
+    const deletedDocument = await this.docModel.findByIdAndDelete(docuemntId);
+    return deletedDocument;
+  }
+
+  async updateDocumentReviewer(
+    documentId: string,
+    createDocumentDTO: CreateDocumentDTO,
+  ): Promise<DocumentPdf> {
+    const updatedDocument = await this.docModel.findByIdAndUpdate(
+      documentId,
+      createDocumentDTO,
+      { new: true },
+    );
+    return updatedDocument;
+  }
+
+  async getDocumentByIdReview(id: string){
+    try {
+      const revs = await this.docModel.findById(id);
+      return { success: true, data: revs };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
   }
 }
